@@ -39,8 +39,6 @@ class CategoriesController extends Controller
             'name' => 'required|unique:categories'
         ]);
 
-        $ncategory = new Category();
-
         Category::create([
             'name' => $request->name
         ]);
