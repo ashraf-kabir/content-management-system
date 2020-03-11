@@ -4,7 +4,7 @@
     <div class="card card-default">
         <div class="card-header">Create Post</div>
         <div class="card-body">
-            <form action="{{ route('posts.store') }}" method="POST">
+            <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-group">
@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="content">Description</label>
+                    <label for="content">Content</label>
                     <textarea name="content" id="content" cols="5" rows="5" class="form-control"></textarea>
                 </div>
 
