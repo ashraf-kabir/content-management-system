@@ -22,7 +22,7 @@
                     <tr>
                         <td>
                             {{-- <img src="{{$post->image}}" alt=""> --}}
-                            <img src="{{ asset('storage/'.$post->image) }}" width="50" height="50">
+                            <img src="{{ asset('storage/'.$post->image) }}" width="70" height="50">
                         </td>
                         <td>
                             {{ $post->title }}
