@@ -17,6 +17,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     @yield('css')
+
+    <style>
+        a {
+            text-decoration: none !important;
+        }
+    </style>
 </head>
 <body>
     <div id="app">

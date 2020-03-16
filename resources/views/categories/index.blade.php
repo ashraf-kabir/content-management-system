@@ -12,6 +12,7 @@
             <table class="table">
                 <thead>
                     <th>Name</th>
+                    <th>Posts Count</th>
                     <th></th>
                 </thead>
                 <tbody>
@@ -21,7 +22,10 @@
                                 {{ $category->name }}
                             </td>
                             <td>
-                                <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info btn-sm">
+                                {{ $category->posts->count() }}
+                            </td>
+                            <td>
+                                <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info btn-sm" style="color: #fff;">
                                     Edit
                                 </a>
                                 <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $category->id }})">Delete</button>
