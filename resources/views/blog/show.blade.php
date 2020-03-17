@@ -17,7 +17,7 @@
                     </p>
                     <h1 class="display-4 mt-7 mb-8">{{ $post->title }}</h1>
                     <p><span class="opacity-70 mr-1">By</span> <a class="text-white" href="#">{{ $post->user->name }}</a></p>
-                    <p><img class="avatar avatar-sm" src="{{ Gravatar::src($post->user->email) }}" alt="..."></p>
+                    <p><img class="avatar avatar-sm" src="{{ Gravatar::src($post->user->email) }}" alt=""></p>
     
                 </div>
   
