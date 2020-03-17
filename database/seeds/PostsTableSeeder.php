@@ -16,27 +16,27 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-
-        $category1 = Category::create([
-            'name' => 'News'
-        ]);
-
         $author1 = User::create([
             'name' => 'Mark Richard',
             'email' => 'mark@gmail.com',
-            'password' => Hash::make('password')
+            'password' => Hash::make('12345678')
         ]);
 
         $author2 = User::create([
             'name' => 'Alex Fernandez',
             'email' => 'alex@outlook.com',
-            'password' => Hash::make('password')
+            'password' => Hash::make('12345678')
         ]);
 
         $author3 = User::create([
             'name' => 'John Robert',
             'email' => 'john@gmail.com',
-            'password' => Hash::make('password')
+            'password' => Hash::make('12345678')
+        ]);
+
+
+        $category1 = Category::create([
+            'name' => 'News'
         ]);
 
         $category2 = Category::create([
@@ -47,13 +47,12 @@ class PostsTableSeeder extends Seeder
             'name' => 'Parnership'
         ]);
 
-        $post1 = Post::create([
+        $post1 = $author1->posts()->create([
             'title' => 'We relocated our office to a new designed garage',
             'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
             'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
             'category_id' => $category1->id,
-            'image' => 'posts/1.jpg',
-            'user_id' => $author1->id
+            'image' => 'posts/1.jpg'
         ]);
 
         $post2 = $author2->posts()->create([
