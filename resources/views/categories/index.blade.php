@@ -25,10 +25,12 @@
                                 {{ $category->posts->count() }}
                             </td>
                             <td>
-                                <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info btn-sm" style="color: #fff;">
-                                    Edit
-                                </a>
-                                <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $category->id }})">Delete</button>
+                                @if (auth()->user()->isAdmin())
+                                    <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-info btn-sm" style="color: #fff;">
+                                        Edit
+                                    </a>
+                                    <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $category->id }})">Delete</button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

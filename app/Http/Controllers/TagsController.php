@@ -65,7 +65,13 @@ class TagsController extends Controller
      */
     public function edit(Tag $tag)
     {
-        return view('tags.create')->with('tag', $tag);
+        if (auth()->user()->isAdmin()) {
+            return view('tags.create')->with('tag', $tag);
+        } else {
+            session()->flash('error', 'You do not have permission to edit.');
+            return redirect()->back();
+        }
+        
     }
 
     /**
@@ -94,15 +100,20 @@ class TagsController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        if ($tag->posts->count() > 0) {
-            session()->flash('error', 'Tag cannot be deleted because it is associated to some posts.');
+        if (auth()->user()->isAdmin()) {
+            if ($tag->posts->count() > 0) {
+                session()->flash('error', 'Tag cannot be deleted because it is associated to some posts.');
+                return redirect()->back();
+            }
+    
+            $tag->delete();
+    
+            session()->flash('success', 'Tag deleted successfully.');
+    
+            return redirect(route('tags.index'));
+        } else {
+            session()->flash('error', 'You do not have permission to delete.');
             return redirect()->back();
         }
-
-        $tag->delete();
-
-        session()->flash('success', 'Tag deleted successfully.');
-
-        return redirect(route('tags.index'));
     }
 }

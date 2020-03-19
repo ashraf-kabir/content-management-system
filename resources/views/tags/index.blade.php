@@ -25,10 +25,12 @@
                                 {{ $tag->posts->count() }}
                             </td>
                             <td>
-                                <a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-info btn-sm" style="color: #fff;">
-                                    Edit
-                                </a>
-                                <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $tag->id }})">Delete</button>
+                                @if (auth()->user()->isAdmin())
+                                    <a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-info btn-sm" style="color: #fff;">
+                                        Edit
+                                    </a>
+                                    <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $tag->id }})">Delete</button>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

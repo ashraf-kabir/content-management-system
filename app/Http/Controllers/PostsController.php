@@ -136,19 +136,24 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-
         $post = Post::withTrashed()->where('id', $id)->firstOrFail();
-
-        if ($post->trashed()) {
-            $post->deleteImage();
-            $post->forceDelete();
-            session()->flash('success', 'Post deleted successfully.');
-        } else {
-            $post->delete();
-            session()->flash('success', 'Post trashed successfully.');
-        }
         
-        return redirect(route('posts.index'));
+        if (auth()->user()->id == $post->user_id || auth()->user()->isAdmin()) {
+
+            if ($post->trashed()) {
+                $post->deleteImage();
+                $post->forceDelete();
+                session()->flash('success', 'Post deleted successfully.');
+            } else {
+                $post->delete();
+                session()->flash('success', 'Post trashed successfully.');
+            }
+            
+            return redirect(route('posts.index'));
+        } else {
+            session()->flash('error', 'You do not have permission to delete.');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -167,12 +172,19 @@ class PostsController extends Controller
      * restore the trashed post
      */
     public function restore($id) {
-        $post = Post::withTrashed()->where('id', $id)->firstOrFail();
-
-        $post->restore();
         
-        session()->flash('success', 'Post restored successfully.');
+        $post = Post::withTrashed()->where('id', $id)->firstOrFail();
+        
+        if (auth()->user()->id == $post->user_id || auth()->user()->isAdmin()) {
 
-        return redirect()->back();
+            $post->restore();
+            
+            session()->flash('success', 'Post restored successfully.');
+    
+            return redirect()->back();
+        } else {
+            session()->flash('error', 'You do not have permission to restore.');
+            return redirect()->back();
+        }
     }
 }

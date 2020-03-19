@@ -28,7 +28,11 @@
                             {{ $post->title }}
                         </td>
                         <td>
-                            <a href="{{ route('categories.edit', $post->category->id) }}">{{ $post->category->name }}</a>
+                            @if (auth()->user()->isAdmin())
+                                <a href="{{ route('categories.edit', $post->category->id) }}">{{ $post->category->name }}</a>
+                            @else
+                                {{ $post->category->name }}
+                            @endif
                         </td>
                         @if ($post->trashed())
                         <td>
@@ -55,7 +59,6 @@
                                     </button>
                                 </form>
                             @endif
-                            
                         </td>
                     </tr>
                 @endforeach

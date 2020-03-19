@@ -65,7 +65,12 @@ class CategoriesController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('categories.create')->with('category', $category);
+        if (auth()->user()->isAdmin()) {
+            return view('categories.create')->with('category', $category);
+        } else {
+            session()->flash('error', 'You do not have permission to edit.');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -94,15 +99,20 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
-        if ($category->posts->count() > 0) {
-            session()->flash('error', 'Category cannot be deleted because it has some posts.');
+        if (auth()->user()->isAdmin()) {
+            if ($category->posts->count() > 0) {
+                session()->flash('error', 'Category cannot be deleted because it has some posts.');
+                return redirect()->back();
+            }
+            
+            $category->delete();
+    
+            session()->flash('success', 'Category deleted successfully.');
+    
+            return redirect(route('categories.index'));
+        } else {
+            session()->flash('error', 'You do not have permission to delete.');
             return redirect()->back();
         }
-        
-        $category->delete();
-
-        session()->flash('success', 'Category deleted successfully.');
-
-        return redirect(route('categories.index'));
     }
 }
