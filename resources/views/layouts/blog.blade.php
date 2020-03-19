@@ -38,7 +38,13 @@
           <span class="navbar-divider d-mobile-none"></span>
 
           <ul class="nav nav-navbar">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
 
+            <li class="nav-item">
+              <a class="nav-link active" href="http://ashrafkabir.com/" target="_blank">Main Site</a>
+            </li>
           </ul>
         </section>
 
