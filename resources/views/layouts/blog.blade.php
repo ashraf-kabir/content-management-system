@@ -48,8 +48,17 @@
           </ul>
         </section>
 
-        <a class="btn btn-xs btn-round btn-success mr-1" href="{{ route('login') }}">Login</a>
-        <a class="btn btn-xs btn-round btn-info" href="{{ route('register') }}">Register</a>
+        @guest
+          <a class="btn btn-xs btn-round btn-success mr-1" href="{{ route('login') }}">Login</a>
+          <a class="btn btn-xs btn-round btn-info" href="{{ route('register') }}">Register</a>
+        @else
+          <a class="btn btn-xs btn-round btn-success mr-1" href="{{ route('home') }}">Dashboard</a>
+          <a class="btn btn-xs btn-round btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+          document.getElementById('logout-form').submit();">Logout</a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+          </form>
+        @endguest
 
       </div>
     </nav><!-- /.navbar -->
