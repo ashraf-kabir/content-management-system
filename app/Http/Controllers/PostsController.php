@@ -86,7 +86,12 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.create')->with('post', $post)->with('categories', Category::all())->with('tags', Tag::all());
+        if (auth()->user()->id !== $post->user_id) {
+            session()->flash('error', 'You do not have permission to edit.');
+            return redirect()->back();
+        } else {
+            return view('posts.create')->with('post', $post)->with('categories', Category::all())->with('tags', Tag::all());
+        }
     }
 
     /**

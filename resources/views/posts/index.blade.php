@@ -40,17 +40,22 @@
                         </td>
                         @else
                         <td>
-                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm text-white">Edit</a>
+                            @if (auth()->user()->id == $post->user_id)
+                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm text-white">Edit</a>
+                            @endif
                         </td>
                         @endif
                         <td>
-                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    {{ $post->trashed() ? 'Delete': 'Trash' }}
-                                </button>
-                            </form>
+                            @if (auth()->user()->id == $post->user_id)
+                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        {{ $post->trashed() ? 'Delete': 'Trash' }}
+                                    </button>
+                                </form>
+                            @endif
+                            
                         </td>
                     </tr>
                 @endforeach
