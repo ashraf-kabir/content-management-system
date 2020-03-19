@@ -40,13 +40,13 @@
                         </td>
                         @else
                         <td>
-                            @if (auth()->user()->id == $post->user_id)
+                            @if (auth()->user()->id == $post->user_id || auth()->user()->isAdmin())
                                 <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-info btn-sm text-white">Edit</a>
                             @endif
                         </td>
                         @endif
                         <td>
-                            @if (auth()->user()->id == $post->user_id)
+                            @if (auth()->user()->id == $post->user_id || auth()->user()->isAdmin())
                                 <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
