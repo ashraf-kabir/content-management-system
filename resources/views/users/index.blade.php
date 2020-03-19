@@ -13,6 +13,7 @@
                 <th>Email</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </thead>
             <tbody>
                 @foreach ($users as $user)
@@ -33,6 +34,14 @@
                                 <form action="{{ route('users.make-admin', $user->id) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-success btn-sm">Make Admin</button>
+                                </form>
+                            @endif
+                        </td>
+                        <td>
+                            @if (!$user->isAdmin())
+                                <form action="{{ route('users.destroy', $user->id) }}" method="DELETE">
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete User</button>
                                 </form>
                             @endif
                         </td>

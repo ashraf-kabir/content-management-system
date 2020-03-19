@@ -39,4 +39,18 @@ class UsersController extends Controller
 
         return redirect(route('users.index'));
     }
+
+    public function destroy($id) {
+
+        if (auth()->user()->id == $id) {
+            session()->flash('error', 'You do not have permission.');
+            return redirect()->back();
+        } else {
+            User::destroy($id);
+
+            session()->flash('success', 'User deleted successfully.');
+    
+            return redirect(route('users.index'));
+        }
+    }
 }
