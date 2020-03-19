@@ -1,5 +1,6 @@
-# content-management-system
- Laravel Content Management System
+# Laravel content-management-system
+
+Dynamic blog site
 
 # Framework: Laravel
 # Version: 7.1.3
