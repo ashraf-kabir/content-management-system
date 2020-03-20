@@ -67,7 +67,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     
-                                    @if (auth()->user()->isAdmin())
+                                    @if (auth()->user())
                                         <a class="dropdown-item" href="{{ route('users.edit-profile') }}">
                                             My Profile
                                         </a>
@@ -142,6 +142,15 @@
                             </li>
                             <li class="list-group-item">
                                 <a href="{{ route('tags.create') }}">Add Tags</a>
+                            </li>
+                        </ul>
+
+                        <ul class="list-group mt-2">
+                            <li class="list-group-item">
+                                <a href="{{ route('users.edit-profile') }}">Update Profile</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{ route('users.edit-profile') }}">Change Password</a>
                             </li>
                         </ul>
                         
