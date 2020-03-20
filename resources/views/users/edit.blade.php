@@ -16,6 +16,11 @@
             </div>
 
             <div class="form-group">
+                <label for="password">New Password</label>
+                <input type="password" name="password" class="form-control">
+            </div>
+
+            <div class="form-group">
                 <label for="about">About Me</label>
                 <textarea name="about" id="about" cols="5" rows="5" class="form-control">{{ $user->about }}</textarea>
             </div>
