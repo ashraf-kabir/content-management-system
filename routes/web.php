@@ -21,6 +21,11 @@ Route::get('blog/tags/{tag}', [PostsController::class, 'tag'])->name('blog.tag')
 
 Auth::routes();
 
+Route::post('/login', [
+    'uses'          => 'Auth\LoginController@login',
+    'middleware'    => 'checkstatus',
+]);
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
     Route::resource('categories', 'CategoriesController');
@@ -38,4 +43,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('users/{user}', 'UsersController@destroy')->name('users.destroy');
     Route::get('users', 'UsersController@index')->name('users.index');
     Route::post('users/{user}/make-admin', 'UsersController@makeAdmin')->name('users.make-admin');
+    Route::post('users/{user}/approve', 'UsersController@approve')->name('users.approve');
+    Route::post('users/{user}/disapprove', 'UsersController@disapprove')->name('users.disapprove');
 });

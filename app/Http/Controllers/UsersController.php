@@ -42,6 +42,26 @@ class UsersController extends Controller
         return redirect(route('users.index'));
     }
 
+    public function approve(User $user) {
+        $user->status = 1;
+
+        $user->save();
+
+        session()->flash('success', 'User AUTHORIZED.');
+
+        return redirect(route('users.index'));
+    }
+
+    public function disapprove(User $user) {
+        $user->status = 0;
+
+        $user->save();
+
+        session()->flash('success', 'User UNAUTHORIZED.');
+
+        return redirect(route('users.index'));
+    }
+
     public function destroy($id) {
 
         if (auth()->user()->id == $id) {

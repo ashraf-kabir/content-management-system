@@ -11,6 +11,7 @@
                 <th>Image</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Auth</th>
                 <th>Role</th>
                 <th>Action</th>
             </thead>
@@ -27,6 +28,21 @@
                         </td>
                         <td>
                             {{ $user->email }}
+                        </td>
+                        <td>
+                            @if (!$user->isAdmin())
+                                @if (!$user->isApproved())
+                                    <form action="{{ route('users.approve', $user->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-success btn-sm float-right">Approve</button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('users.disapprove', $user->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm float-right">Disapprove</button>
+                                    </form>
+                                @endif
+                            @endif
                         </td>
                         <td>
                             @if (!$user->isAdmin())

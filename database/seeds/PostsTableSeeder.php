@@ -19,19 +19,22 @@ class PostsTableSeeder extends Seeder
         $author1 = User::create([
             'name' => 'Mark Richard',
             'email' => 'mark@gmail.com',
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('12345678'),
+            'status' => 1
         ]);
 
         $author2 = User::create([
             'name' => 'Alex Fernandez',
             'email' => 'alex@outlook.com',
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('12345678'),
+            'status' => 1
         ]);
 
         $author3 = User::create([
             'name' => 'John Robert',
             'email' => 'john@gmail.com',
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('12345678'),
+            'status' => 1
         ]);
 
 

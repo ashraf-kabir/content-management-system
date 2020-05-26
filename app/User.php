@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'status', 'remember_token',
     ];
 
     /**
@@ -41,6 +41,10 @@ class User extends Authenticatable
 
     public function isAdmin() {
         return $this->role === 'admin';
+    }
+
+    public function isApproved() {
+        return $this->status === 1;
     }
 
     public function posts() {
