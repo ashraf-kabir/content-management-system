@@ -11,8 +11,8 @@
                 <th>Image</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th></th>
-                <th></th>
+                <th>Role</th>
+                <th>Action</th>
             </thead>
             <tbody>
                 @foreach ($users as $user)
