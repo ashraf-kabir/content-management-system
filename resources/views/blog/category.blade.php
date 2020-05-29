@@ -37,7 +37,7 @@
               @forelse ($posts as $post)
                 <div class="col-md-6">
                   <div class="card border hover-shadow-6 mb-6 d-block">
-                    <a href="{{ route('blog.show', $post->id) }}"><img class="card-img-top" src="{{ asset('storage/'.$post->image) }}" alt="Card image cap"></a>
+                    <a href="{{ route('blog.show', $post->id) }}"><img class="card-img-top" src="{{ asset($post->image) }}" alt="Card image cap"></a>
                     <div class="p-6 text-center">
                       <p>
                         <a class="small-5 text-lighter text-uppercase ls-2 fw-400" href="#">

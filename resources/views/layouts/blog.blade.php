@@ -39,7 +39,7 @@
 
           <ul class="nav nav-navbar">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Home</a>
+              <a class="nav-link active" href="https://blog.ashrafkabir.com/">Home</a>
             </li>
 
             <li class="nav-item">
