@@ -34,7 +34,7 @@
 
                 @if (isset($post))
                     <div class="form-group">
-                        <img src="{{ asset('storage/'.$post->image) }}" width="100%">
+                        <img src="{{ asset($post->image) }}" width="100%">
                     </div>
                 @endif
                 <div class="form-group">

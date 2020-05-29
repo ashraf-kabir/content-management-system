@@ -45,13 +45,18 @@ class PostsController extends Controller
     public function store(CreatePostsRequest $request)
     {
         // upload image
-        $image = $request->image->store('posts');
+        // $image = $request->image->store('posts');
+
+        $image = $request->image;
+        $image_new_name = time().$image->getClientOriginalName();
+        $image->move('uploads/posts', $image_new_name);
+
         // create post
         $post = Post::create([
             'title' => $request->title,
             'description' => $request->description,
             'content' => $request->content,
-            'image' => $image,
+            'image' => 'uploads/posts/'.$image_new_name,
             'published_at' => $request->published_at,
             'category_id' => $request->category,
             'user_id' => auth()->user()->id
@@ -105,13 +110,23 @@ class PostsController extends Controller
     {
         $data = $request->only(['title', 'description', 'published_at', 'content']);
         // check if new image
-        if ($request->hasFile('image')) {
-            // upload it
-            $image = $request->image->store('posts');
-            // delete old one
-            $post->deleteImage();
+        // if ($request->hasFile('image')) {
+        //     // upload it
+        //     $image = $request->image->store('posts');
+        //     // delete old one
+        //     $post->deleteImage();
 
-            $data['image'] = $image;
+        //     $data['image'] = $image;
+        // }
+
+        if ($request->hasFile('image')) {
+            $image = $request->image;
+
+            $image_new_name = time() . $image->getClientOriginalName();
+        
+            $image->move('uploads/posts', $image_new_name);
+
+            $post->image = 'uploads/posts/'.$image_new_name;
         }
 
         if ($request->tags) {
