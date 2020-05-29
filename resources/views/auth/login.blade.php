@@ -57,7 +57,7 @@
                                     {{ __('Login') }}
                                 </button>
                                 <a class="btn btn-link" href="{{ route('register') }}">
-                                    {{ __('Don\'t have an account? Register now.') }}
+                                    {{ __('Don\'t have an account? Register.') }}
                                 </a>
                                 {{-- <a class="btn btn-xs btn-round btn-info" href="{{ route('register') }}">Register</a> --}}
                                 {{-- @if (Route::has('password.request'))
