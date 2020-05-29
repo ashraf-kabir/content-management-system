@@ -17,12 +17,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="description">Description</label>
+                    <label for="description">Summary/Excerpt</label>
                     <textarea name="description" id="description" cols="5" rows="5" class="form-control">{{ isset($post) ? $post->description : '' }}</textarea>
                 </div>
 
                 <div class="form-group">
-                    <label for="content">Content</label>
+                    <label for="content">Description/Details</label>
                     <input id="content" type="hidden" name="content" value="{{ isset($post) ? $post->content : '' }}">
                     <trix-editor input="content"></trix-editor>
                 </div>
