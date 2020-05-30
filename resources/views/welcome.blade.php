@@ -45,6 +45,7 @@
                         </a>
                       </p>
                       <h5 class="mb-0"><a class="text-dark" href="{{ route('blog.show', $post->id) }}">{{ $post->title }}</a></h5>
+                      <p class="small-5 text-darker ls-2 fw-400">by {{ $post->user->name }} <br> published at: {{ $post->published_at }}</p>
                     </div>
                   </div>
                 </div>

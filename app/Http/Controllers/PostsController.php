@@ -23,7 +23,10 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('posts.index')->with('posts', Post::all());
+        // $posts = Post::orderBy('published_at', 'desc')->take(10)->get();
+        $posts = Post::orderBy('published_at', 'desc')->get();
+        return View('posts.index')->with('posts', $posts);
+        // return view('posts.index')->with('posts', Post::all());
     }
 
     /**
@@ -121,11 +124,8 @@ class PostsController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->image;
-
             $image_new_name = time() . $image->getClientOriginalName();
-        
             $image->move('uploads/posts', $image_new_name);
-
             $post->image = 'uploads/posts/'.$image_new_name;
         }
 
