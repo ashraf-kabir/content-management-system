@@ -21,10 +21,6 @@ Route::get('blog/tags/{tag}', [PostsController::class, 'tag'])->name('blog.tag')
 
 Auth::routes();
 
-Route::post('/login', [
-    'uses'          => 'Auth\LoginController@login',
-    'middleware'    => 'checkstatus',
-]);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', 'HomeController@index')->name('home');
