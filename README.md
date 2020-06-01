@@ -2,11 +2,11 @@
 
 Dynamic blog site
 
-# Framework: Laravel
-# Version: 7.1.3
-# Theme: Saas
+### Framework: Laravel
+### Version: 7.1.3
+### Theme: Saas
 
-# features:
+### features:
 1. any user can view the posted blogs
 2. user can create account
 3. user can create blog post, edit and delete
